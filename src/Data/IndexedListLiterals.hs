@@ -4,13 +4,13 @@
   TypeInType,
   ConstraintKinds,
   FunctionalDependencies,
-  FlexibleInstances,
-  TupleSections
+  FlexibleInstances
   #-}
 module Data.IndexedListLiterals (
     IndexedListLiterals(..)
   , ILL
   , module Data.Tuple.OneTuple
+  , ZeroTuple(..)
   ) where
 
 import GHC.TypeNats
@@ -32,7 +32,7 @@ instance IndexedListLiterals (ZeroTuple a) 0 a where
 instance IndexedListLiterals (OneTuple a) 1 a where
   toList (OneTuple a) = [a]
 
--- | Intuitively the zero tuple is () or Void but this breaks the Functional Dependency "input -> output length" stopping reliable inference
+-- | Intuitively the zero tuple is () or Void but this breaks the Functional Dependency "input -> output length" stopping reliable inference, so this constructor is used to preserve type information
 data ZeroTuple a = ZeroTuple
 
 -- all code generated below comes from this function
