@@ -13,7 +13,7 @@ module Data.IndexedListLiterals (
   , ZeroTuple(..)
   ) where
 
-import GHC.TypeNats
+import GHC.TypeLits
 import Data.Kind
 import Data.Tuple.OneTuple
 -- import Control.Monad
@@ -44,7 +44,7 @@ data ZeroTuple a = ZeroTuple
 --   withCommas = scanl1 (\a b -> a++","++b)
 --   className = "IndexedListLiterals"
 --   template tys vals length =
---     ["instance " ++ className ++ " (" ++ tys ++ ") " ++ show length ++ " " ++ head types ++ " where"
+  --     ["instance " ++ className ++ " (" ++ tys ++ ") " ++ show length ++ " " ++ head types ++ " where"
 --     ,"  toList (" ++ vals ++ ") = [" ++ vals ++ "]"]
 --   res = zipWith3 template (withCommas types) (withCommas values) [0 :: Int ..]
 --   dropOneTuple = tail
