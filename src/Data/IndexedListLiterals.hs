@@ -9,13 +9,13 @@
 module Data.IndexedListLiterals (
     IndexedListLiterals(..)
   , ILL
-  , module Data.Tuple.OneTuple
+  , module Data.Tuple.Only
   , ZeroTuple(..)
   ) where
 
 import GHC.TypeLits
 import Data.Kind
-import Data.Tuple.OneTuple
+import Data.Tuple.Only
 -- import Control.Monad
 
 -- | An alias for IndexedListLiterals
@@ -29,8 +29,8 @@ class IndexedListLiterals (input :: Type) (length :: Nat) (output :: Type) | out
 instance IndexedListLiterals (ZeroTuple a) 0 a where
   toList ZeroTuple = []
 
-instance IndexedListLiterals (OneTuple a) 1 a where
-  toList (OneTuple a) = [a]
+instance IndexedListLiterals (Only a) 1 a where
+  toList (Only a) = [a]
 
 -- | Intuitively the zero tuple is () or Void but this breaks the Functional Dependency "input -> output length" stopping reliable inference, so this constructor is used to preserve type information
 data ZeroTuple a = ZeroTuple
