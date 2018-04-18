@@ -18,7 +18,7 @@ x :: Vector 0 Double
 x = vector $ ZeroTuple @Double
 
 y :: Vector 1 Double
-y = vector (OneTuple 1)
+y = vector (Only 1)
 
 z :: Vector 2 String
 z = vector ("Hello", "World")
@@ -30,7 +30,7 @@ a :: Matrix 0 0 Bool
 a = matrix $ ZeroTuple @(ZeroTuple Bool)
 
 b :: Matrix 1 2 String
-b = matrix $ OneTuple ("Hello","World")
+b = matrix $ Only ("Hello","World")
 
 c :: Matrix 4 5 Double
 c = matrix ((1,2,3,0,0)
