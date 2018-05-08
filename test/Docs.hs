@@ -3,6 +3,7 @@
 import Data.IndexedListLiterals
 import GHC.TypeLits
 import Data.Kind
+import Test.Hspec
 
 data Matrix (x :: Nat) (y :: Nat) (ty :: Type)
 
@@ -40,6 +41,17 @@ c = matrix ((1,2,3,0,0)
 
 -- | just making sure the docs type check
 main :: IO ()
-main = do
-  _ <- return (a,b,c,v,x,y,z)
-  return ()
+main = hspec $ do
+  describe "fromListP" $
+    it "should follow it's documentation" $ do
+      fromListP (len @3) [1,2,3] `shouldBe` Just (1,2,3)
+      fromListP (len @3) ["word","up"] `shouldBe`  Nothing
+      fromListP (len @1) ['z'] `shouldBe` Just (Only 'z')
+
+  describe "fromList" $
+    it "should follow it's documentation" $ do
+      (fromList [1,2,3] :: Maybe (Int, Int, Int)) `shouldBe` Just (1,2,3)
+      (fromList ["word","up"] :: Maybe (String, String, String)) `shouldBe`  Nothing
+      (fromList ['z'] :: Maybe (Only Char)) `shouldBe` Just (Only 'z')
+
+
