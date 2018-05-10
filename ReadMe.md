@@ -42,3 +42,4 @@ c = matrix ((1,2,3,0,0)
 The full code is in test//Docs.hs
 
 This only supports literals of length up to 20, though that can be easily extended using the code generator in src//Data//IndexedListLiterals.hs
+

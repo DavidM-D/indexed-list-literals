@@ -67,7 +67,7 @@ library
 test-suite IndexedListLiterals-test
             type: exitcode-stdio-1.0
             main-is: Docs.hs
-            build-depends:       base, indexed-list-literals
+            build-depends:       base, indexed-list-literals, hspec
             hs-source-dirs:      test
             default-language:    Haskell2010
 
