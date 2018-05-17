@@ -31,9 +31,15 @@ type ILL = IndexedListLiterals
 
 -- | the fromList variants take a list and convert it into a tuple
 --   it's sort of the inverse of toList
---   fromListP (len @3) [1,2,3] == Just (1,2,3)
---   fromListP (len @3) ["word","up"] == Nothing
---   fromListP (len @1) ['z'] == Just (Only 'z')
+--
+--   >> fromListP (len @3) [1,2,3]
+--   >  Just (1,2,3)
+--
+--   >> fromListP (len @3) ["word","up"]
+--   >  Nothing
+--
+--   >> fromListP (len @1) ['z']
+--   >  Just (Only 'z') @
 fromListP :: forall input (length :: Nat) output len.
              (KnownNat length, ILL input length output)
           => len length -> [output] -> Maybe input
@@ -42,9 +48,14 @@ fromListP _length = fromList
 len :: Proxy a
 len = Proxy
 
--- | (fromList [1,2,3] :: Maybe (Int, Int, Int)) `shouldBe` Just (1,2,3)
---   (fromList ["word","up"] :: Maybe (String, String, String)) `shouldBe`  Nothing
---   (fromList ['z'] :: Maybe (Only Char)) `shouldBe` Just (Only 'z')
+-- | >> fromList [1,2,3] :: Maybe (Int, Int, Int)
+--   >  Just (1,2,3)
+--
+--   >> fromList ["word","up"] :: Maybe (String, String, String)
+--   >  Nothing
+-- 
+--   >> fromList ['z'] :: Maybe (Only Char)
+--   >  Just (Only 'z')
 fromList :: forall input (length :: Nat) output.
             (KnownNat length, ILL input length output)
          => [output] -> Maybe input
@@ -56,6 +67,14 @@ fromList xs
 -- | A type class which allows you to write tuples which can be transformed to and from a list
 --   the length of the list is also provided as a Nat
 class IndexedListLiterals (input :: Type) (length :: Nat) (output :: Type) | output length -> input, input -> output length where
+  -- | >> toList (Only 1)
+  --   >  [1]
+  --
+  --   >> toList (1,2,3)
+  --   >  [1,2,3]
+  --
+  --   >> toList ZeroTuple
+  --   >  []
   toList    :: input -> [output]
   -- | a partial fromList with bad error messages
   fromList' :: [output] -> input
