@@ -1,1 +1,1 @@
-Added fromList functions
+Improved/Fixed the haddock documentation
