@@ -2,7 +2,7 @@
 -- further documentation, see http://haskell.org/cabal/users-guide/
 
 name:                indexed-list-literals
-version:             0.2.1.1
+version:             0.2.1.2
 synopsis:            Type safe indexed list literals
 homepage:            https://github.com/davidm-d/indexed-list-literals
 license:             BSD3
